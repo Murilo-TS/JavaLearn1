@@ -1,0 +1,64 @@
+package p1_algorithm;
+import java.util.Random;
+
+public class P1_Algorithm 
+{
+    public static void main(String[] args) {
+        // determino os arrays e suas posições 
+        int[] arrmil = new int[1000];
+        int[] arrfinal = new int[250];
+        // instancio o Random
+        Random r = new Random();
+        
+        //área de teste da aplicação
+        try { 
+            // crio o loop do arrfinal e defino o padrão de 2 posições
+            for (int i = 0; i < arrfinal.length; i += 2){
+                // loop do arrmil e seu padrão de a cada 4 posições
+                for (int a = 0;a < arrmil.length; a += 4){
+                    // defino o valor base, o valor tem que ser um numero entre 5 e 250
+                    arrmil[a]= r.nextInt(250) + 5;
+                    // defino os valores das posições seguintes
+                    if (a + 1 < arrmil.length){
+                        arrmil[a+1]=r.nextInt(250) + 5;
+                    }
+                    if (a + 2 < arrmil.length){
+                        arrmil[a+2]=r.nextInt(250) + 5;
+                    }
+                    if (a + 3 < arrmil.length){
+                        arrmil[a+3]= 0;
+                    }
+                    /* 3 posições são numeros aleatorios e o 4 será 0
+
+                    Em seguida vem o arrfinal*/
+
+                    //valor da media das 3 posições
+                    int media = (arrmil[a]+arrmil[a+1]+arrmil[a+2])/3;
+                    
+                    //valor da primeira posição do array arrfinal é igual a média
+                    arrfinal[i] = media;
+                    
+                    //valor da segunda posição é igual a zero
+                    if (i+1 < arrfinal.length){
+                        arrfinal[i+1] = 0;
+                    }
+                }
+            }
+            // mostra se o resultado do array de mil posições está funcionando
+            System.err.println("Teste do array de mil posicoes:");
+            //i++ -> incrementação -> i+1
+            for (int i = 0; i < 10; i++){
+                System.out.println(arrmil[i]);
+            }
+            // mostra o array de 250 posições
+            System.out.println("Array de 250 posicoes:");
+            for (int i = 0; i < 250; i++){
+                System.out.print(arrfinal[i] + " ");
+            }  
+        } 
+        // exceção aritmética ativada
+        catch(ArithmeticException e) {
+            System.err.print("Ops... precisamos revisar a aula do piva");
+        } 
+    }
+}
